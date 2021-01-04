@@ -4,7 +4,7 @@
 
 	Integrated preprocessor module.
 
-	Copyright (c) 1999-2016 Miguel I. Garcia Lopez, FloppySoftware.
+	Copyright (c) 1999-2021 Miguel I. Garcia Lopez, FloppySoftware.
 
 	This program is free software; you can redistribute it and/or modify it
 	under the terms of the GNU General Public License as published by the
@@ -32,6 +32,7 @@
 	11 Oct 2016 : Documented and slightly optimized.
 	12 Oct 2016 : Change input '\t' to ' ' in cpp_read().
 	13 Oct 2016 : Now cpp_read() skip empty lines (both C and assembler) and comments (assembler).
+	04 Jan 2021 : Remove space on the right in p_prep().
 */
 
 // Types of symbol preprocess
@@ -683,6 +684,13 @@ int sym;
 		{
 			// Keep character as it is
 			p_keepch(BfGet());
+		}
+	}
+	
+	// Remove space on the right
+	if(cpptmpx) {
+		if(cpptmp[cpptmpx - 1] == ' ') {
+			--cpptmpx;
 		}
 	}
 

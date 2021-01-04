@@ -1,11 +1,11 @@
 MESCC / Mike's Enhanced Small C Compiler
 ========================================
 
-MESCC v1.21 - 03 May 2018
+MESCC v1.22 - 04 Jan 2021
 
 Mike's Enhanced Small C Compiler for Z80 and CP/M
 
-Copyright (c) 1999-2018 Miguel García / FloppySoftware
+Copyright (c) 1999-2021 Miguel García / FloppySoftware
 
 **MESCC** is my project of a **C compiler** for the [CP/M operating system](https://en.wikipedia.org/wiki/CP/M) and the Z80 cpu.
 

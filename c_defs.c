@@ -4,7 +4,7 @@
 
 	Definitions.
 
-	Copyright (c) 1999-2016 Miguel I. Garcia Lopez, FloppySoftware.
+	Copyright (c) 1999-2021 Miguel I. Garcia Lopez, FloppySoftware.
 
 	This program is free software; you can redistribute it and/or modify it
 	under the terms of the GNU General Public License as published by the
@@ -53,6 +53,7 @@
 	14 Feb 2018 : Added ERESCSQ and ERNOMEM error codes. Added C_USEMALLOC macro.
 	              v1.20
 	03 May 2018 : v1.21
+	04 Jan 2021 : v1.22
 */
 
 // Optional #defines
@@ -64,8 +65,8 @@
 // Version
 // -------
 
-#define VERSION	"Mike's Enhanced Small C Compiler v1.21 - 03 May 2018"
-#define COPYRGT "(c) 1999-2018 FloppySoftware"
+#define VERSION	"Mike's Enhanced Small C Compiler v1.22 - 04 Jan 2021"
+#define COPYRGT "(c) 1999-2021 FloppySoftware"
 
 // Output types
 // ------------
