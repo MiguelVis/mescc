@@ -1,7 +1,7 @@
 MESCC / Mike's Enhanced Small C Compiler
 ========================================
 
-MESCC v1.22 - 04 Jan 2021
+MESCC v1.23 - 13 Jan 2021
 
 Mike's Enhanced Small C Compiler for Z80 and CP/M
 

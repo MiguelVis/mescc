@@ -4,7 +4,7 @@
 
 	Assembler code output module.
 
-	Copyright (c) 1999-2016 Miguel I. Garcia Lopez, FloppySoftware.
+	Copyright (c) 1999-2021 Miguel I. Garcia Lopez, FloppySoftware.
 
 	This program is free software; you can redistribute it and/or modify it
 	under the terms of the GNU General Public License as published by the
@@ -34,6 +34,7 @@
 	22 Nov 2015 : New function wrtequ().
 	01 Dec 2015 : Print a SPACE on line starts, instead of a TAB.
 	13 Oct 2016 : Documented.
+	13 Jan 2021 : Bugfix in a_incdec() in extern char.
 */
 
 // Start of assembler code
@@ -539,7 +540,7 @@ int lval[], inc, post;
 	if((ptr && (ptr[SY_TYPE] & TY_CHAR) && ptr[SY_IDENT] != ID_PTR)	|| (lval[1] & TY_CHAR))
 	{
 		if(!lval[1])
-			ptr[SY_STORAGE] == ST_STATIK ? immed_str(ptr + SY_NAME) : getloc(ptr);
+			ptr[SY_STORAGE] != ST_STKLOC ? immed_str(ptr + SY_NAME) : getloc(ptr);
 
 		if(post)
 			a_code("LD A,(HL)");
