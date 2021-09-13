@@ -53,8 +53,9 @@
  *  - 18 Feb 2018 : Document public macros. Rename internal macros and include them in cleaning. Rework remove() and rename(). Added FOPEN_MAX.
  *  - 03 May 2018 : Make CC_FPUTS effective (use #ifdef instead of #if).
  *  - 27 Dec 2018 : Added fsize().
+ *  - 13 Sep 2021 : Bugfix in fopen "a" text mode when there are no 0x1A bytes in the last record.
  *
- * Copyright (c) 1999-2018 Miguel I. Garcia Lopez / FloppySoftware.
+ * Copyright (c) 1999-2021 Miguel I. Garcia Lopez / FloppySoftware.
  *
  * Licensed under the GNU General Public License v3.
  *
@@ -234,9 +235,9 @@ char *fname, *fmode;
 
 				for(i = 0; i < 128; ++i)
 				{
-					if(*(fp + _XF_IBUF + fp[_XF_IPOS]++) == 0x1A)
+					if(*(fp + _XF_IBUF + i) == 0x1A)
 					{
-						--fp[_XF_IPOS];
+						fp[_XF_IPOS] = i;
 						break;
 					}
 				}
