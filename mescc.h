@@ -54,6 +54,7 @@
  *  - 30 Nov 2015 : Added support for atexit().
  *  - 24 Jan 2016 : Added support for CC_NO_ORG.
  *  - 10 Dec 2016 : Documented. GPL v3.
+ *  - 14 Sep 2021 : Bugfix in cccmp.
  *
  * Copyright (c) 1999-2016 Miguel I. Garcia Lopez / FloppySoftware.
  *
@@ -571,19 +572,18 @@ ccge
 ;	HL = 1
 
 cccmp
-	LD	A,E
-	SUB	L
-	LD	E,A
+	LD	A,H
+	ADD 80H
+	LD	B,A
 	LD	A,D
-	SBC	H
-	LD	HL,1
-	JP	M,cccmp1
-	OR	E
-	RET
+	ADD 80H
+	CP  B
+	JR  NZ,cccmp1
+	LD  A,E
+	CP  L
 
 cccmp1
-	OR	E
-	SCF
+	LD  HL,1
 	RET
 
 ;	HL = DE <= HL	(UNSIGNED)
