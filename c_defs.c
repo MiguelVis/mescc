@@ -55,6 +55,7 @@
 	03 May 2018 : v1.21
 	04 Jan 2021 : v1.22
 	13 Jan 2021 : v1.23
+	14 Sep 2021 : v1.24
 */
 
 // Optional #defines
@@ -66,7 +67,7 @@
 // Version
 // -------
 
-#define VERSION	"Mike's Enhanced Small C Compiler v1.23 - 13 Jan 2021"
+#define VERSION	"Mike's Enhanced Small C Compiler v1.24 - 14 Sep 2021"
 #define COPYRGT "(c) 1999-2021 FloppySoftware"
 
 // Output types
