@@ -17,6 +17,7 @@
  *  - 16 Apr 2007 : GPL'd.
  *  - 09 Dec 2016 : Documented. Optimized. GPL v3.
  *  - 02 Aug 2017 : Output '%%' as '%'.
+ *  - 15 Sep 2021 : Output -32768 in pf_dec() as expected.
  *
  * Copyright (c) 1999-2016 Miguel I. Garcia Lopez / FloppySoftware.
  *
@@ -235,16 +236,23 @@ unsigned char *xpf_dpt;    // Buffer pointer
 pf_dec(i)
 int i;
 {
-	xpf_dpt = xpf_dst;
-
-	if(i < 0)
+	if(i != -32768)
 	{
-		*xpf_dpt++ = '-'; i = -i;
+		xpf_dpt = xpf_dst;
+
+		if(i < 0)
+		{
+			*xpf_dpt++ = '-'; i = -i;
+		}
+
+		pf_dec2(i);
+
+		*xpf_dpt = '\0';
 	}
-
-	pf_dec2(i);
-
-	*xpf_dpt = '\0';
+	else
+	{
+		strcpy(xpf_dst, "-32768");
+	}
 
 	pf_sf(xpf_dst);
 }
