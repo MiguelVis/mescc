@@ -54,6 +54,7 @@
  *  - 03 May 2018 : Make CC_FPUTS effective (use #ifdef instead of #if).
  *  - 27 Dec 2018 : Added fsize().
  *  - 13 Sep 2021 : Bugfix in fopen "a" text mode when there are no 0x1A bytes in the last record.
+ *  - 16 Sep 2021 : Bugfix in fsize() regarding CP/M v2 / v3 compatibility.
  *
  * Copyright (c) 1999-2021 Miguel I. Garcia Lopez / FloppySoftware.
  *
@@ -757,8 +758,19 @@ char *fname;
 		{
 			bdos_hl(BF_DMA, 0x80);
 
-			if(_FILEOP(BF_FSIZE, fc) != 0xFF)
+			/*
+				BDOS fn. 35 - Compute file size:
+				- CP/M v2 returns nothing about success / error.
+				- CP/M v3 returns success / error codes in the A register.
+				
+				So, for compatibility, first search the file and if it exists,
+				we assume we will get the file size.
+			*/
+			
+			if(_FILEOP(BF_FIND1ST, fc) != 0xFF)
 			{
+				_FILEOP(BF_FSIZE, fc);
+
 				recs = fc[_FSZ_RR] + (fc[_FSZ_RR + 1] << 8);
 			}
 		}
