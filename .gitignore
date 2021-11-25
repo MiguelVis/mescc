@@ -5,6 +5,12 @@
 *.ZSM
 *.PRN
 
+-------------------------
+# DOCUMENTATION GENERATOR
+# -----------------------
+gdoc.com
+GDOC.COM
+
 # -----------------------
 # PROJECT FILES & FOLDERS
 # -----------------------
