@@ -55,8 +55,9 @@
  *  - 08 Jan 2016 : Include ctype.h, mem.h libraries if CC_FCX is defined.
  *  - 18 Jul 2016 : Added #defines BF_READRND and BF_WRITERND.
  *  - 11 Dec 2016 : Documented. Optimized. GPL v3.
+ *  - 25 Nov 2021 : Support for the '-' character in filenames: UxField(), setfcb().
  *
- * Copyright (c) 1999-2016 Miguel I. Garcia Lopez / FloppySoftware.
+ * Copyright (c) 1999-2021 Miguel I. Garcia Lopez / FloppySoftware.
  *
  * Licensed under the GNU General Public License v3.
  *
@@ -346,7 +347,7 @@ char *s, *d;
 	{
 		c = toupper(*s);
 
-		if((c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '$' || c == '_' || c == '*' || c == '?')
+		if(isalpha(c) || isdigit(c) || c == '$' || c == '_' || c == '-' || c == '*' || c == '?')
 		{
 			*d++ = c; ++s;
 		}
@@ -540,6 +541,8 @@ sfcbtok
 	CP	'Z' + 1
 	JR	C,sfcbtks
 	CP	'_'		;_
+	JR  Z,sfcbtks
+	CP  '-'		;-
 	JR	NZ,sfcbtke
 
 sfcbtks
